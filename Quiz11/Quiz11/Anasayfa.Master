@@ -1,0 +1,282 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Anasayfa.master.cs" Inherits="Quiz11.Anasayfa" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style> 
+           #MainContainer{
+               width:950px;
+               height:750px;
+               margin-right:auto;
+               margin-left:auto;
+               
+           }
+              #content{
+               background-color:antiquewhite;
+               width:670px;
+               float:left;
+                 height:600px;
+                 color:black;
+           }
+              #hakkimizda{
+                  background-color:#808080;
+                  width:280px;
+                  height:280px;
+                  float:left;
+                
+              }
+              #info
+              {
+background-color:#eac2cf;
+width:280px ;
+float:left;
+height:300px;
+
+              }
+           #top{
+               width:950px;
+               height:150px;
+               background-color:purple;
+           }
+           #soz{
+               font-family:'Comic Sans MS';
+               font-style:italic;
+               font-weight:bold;
+              padding-right:15px;
+              padding-left:15px;
+              padding-top:20px;
+              color:black;
+           }
+            #hakkimizda{
+      
+           font-size:15px;
+           font-family:'Comic Sans MS';
+           text-align:center;
+           color:blueviolet;
+           padding-top:22px;
+           background-color:#ddd5c9;
+           font-weight:bold;
+
+                  }
+           #menu{
+               float:left;
+               top:60px;
+          position:absolute;
+
+           }
+           nav ul li{
+              
+               float:left;
+               font-family:'Comic Sans MS';
+               font-weight:bold;
+               border:none;
+               border-radius:5px;
+               margin:20px;
+               margin-left:80px;
+              width:200px;
+          height:50px;
+                 list-style-type:none;
+            background-color:deeppink;
+               color:#efa7bf;
+               text-align:center;
+               line-height:50px;
+           }  
+       
+           
+           #konuli{
+               float:none;
+               margin-left:5px;
+               font-family:'Comic Sans MS';
+               color:blueviolet;
+               background-color: rgba(0,0,0,0);
+               text-align:left;
+           }
+           #konuli:hover{
+               background-color:rebeccapurple;
+               color:white;
+           }
+           #konuul{
+               background-color:greenyellow;
+               margin:0px;
+               padding:0px;
+               display:none;
+               top:87px;
+               position:absolute;
+           }
+          #profilul{
+                background-color:greenyellow;
+               margin:0px;
+               padding:0px;
+               display:none;
+               top:87px;
+               position:absolute;
+           }
+        #kisili{
+                float:none;
+               margin-left:5px;
+               font-family:'Comic Sans MS';
+               color:blueviolet;
+               background-color: rgba(0,0,0,0);
+               text-align:left;
+        }
+       #iletisimul{
+                         background-color:greenyellow;
+               margin:0px;
+               padding:0px;
+               display:none;
+               top:87px;
+               position:absolute;
+        }
+       #iletisimli{
+         
+           font-size:12px;
+           font-weight:bold;
+               float:none;
+               margin-left:5px;
+               font-family:'Comic Sans MS';
+               color:blueviolet;
+               background-color: rgba(0,0,0,0);
+               text-align:left;
+               height:100px;
+               padding-left:5px;
+           
+
+
+
+       }
+            #kisili:hover {
+                background-color: rebeccapurple;
+                color: white;
+            }
+      
+       #iletisim:hover{
+             background-color: dodgerblue;
+                color: white;
+
+       }
+         #menuli:hover{
+         background-color: dodgerblue;
+                color: white;
+                  
+           }
+  
+       #profilli:hover{
+             background-color: dodgerblue;
+                color: white;
+       }
+    </style>
+
+    <script src="jquery-3.1.0.min.js"></script>
+ 
+
+   
+   
+</head>
+<body>
+     <script>
+         $(document).ready(function () {
+             $("#menuli").mouseover(function () {
+                 $("#konuul").css("display", "block");
+             })
+             $("#menuli").mouseleave(function () {
+                 $("#konuul").css("display", "none");
+             })
+             $("#profilli").mouseover(function () {
+                 $("#profilul").css("display", "block");
+             })
+             $("#profilli").mouseleave(function () {
+                 $("#profilul").css("display", "none");
+             })
+             $("#iletisim").mouseover(function () {
+                 $("#iletisimul").css("display","block");
+
+             })
+             $("#iletisim").mouseleave(function () {
+                 $("#iletisimul").css("display","none");
+
+             })
+         })
+        
+
+    
+    </script>
+
+    <form id="form1" runat="server">
+    <div>
+
+        <div id="MainContainer">
+            <div id="top">
+                <div id="soz">
+                    <asp:Label runat="server"  ID="lblsoz"/>
+                </div>
+                <div id="menu">
+                    <nav>
+                    <ul>
+                       <li id="menuli" >KONULAR
+                           <ul id="konuul">
+                               <asp:Repeater runat="server" ID="repeater1">
+                                   <ItemTemplate>
+                                       <li id="konuli">
+                                           <asp:Label Id="lblkonu" runat="server" Text='<%#Eval("Ad") %>'/>
+                                       </li>
+                                   </ItemTemplate>
+                               </asp:Repeater>
+                           </ul>
+                           <ul>
+
+
+
+                           </ul>
+
+
+                       </li>
+                        <li id="profilli">PROFİL
+                            <ul id="profilul">    
+                                                    
+                              <asp:Repeater runat="server" ID="repeaterprofil" >
+                            <ItemTemplate>
+                                <li id="kisili"> <a href="Content.aspx?cid=<%#Eval("Id") %>"><%#Eval("AdSoyad") %></a></li>
+                             </ItemTemplate>
+                        </asp:Repeater>
+                                </ul>
+                        </li>
+                      
+                   <li id="iletisim" >İLETİŞİM 
+                            <ul id="iletisimul">
+                                  <li id="iletisimli">
+                                            <asp:Label  id="lbliletisim" Text="Telefon:1111 111 11 11 </br> E-Mail:cc@gmail.com" runat="server"></asp:Label>
+                                        </li>
+                               
+                            </ul>
+                        </li>
+
+                    </ul>
+                           </nav>
+
+                </div>
+
+            </div>
+                <div id="content">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" >
+                   
+                    </asp:ContentPlaceHolder>
+
+                </div>
+                <div id="hakkimizda">
+                    <p>Her günün bitiminde yeni birşeyler öğreniyorsan,Ömrün sana vazgeçilmez insanlar kazandırıyorsa,Sabaha gülerek açabiliyorsan gözlerini,Büyüdüğüne üzülme!!<br /><br />Bırak,günler sende iz bıraksın,<br />Bırak,çizgilerin ve akların artsın,<br />Yeter ki,yarın dünü aratmasın.<br />Yeter ki sevdiklerin seni unutmasın....</p>
+                </div>
+                <div id="info">
+                 
+                </div>
+          
+
+        </div>
+        
+    </div>
+    </form>
+</body>
+</html>
